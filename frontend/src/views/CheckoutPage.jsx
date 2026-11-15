@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { formatINR, placeOrder } from "../api.js";
+import PaymentModal from "../components/PaymentModal.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 import { useStore } from "../context/StoreContext.jsx";
 
 export default function CheckoutPage() {
   const { cart, totals, updateQty, removeFromCart, clearCart, setView, goShop } = useStore();
+  const { user } = useAuth();
   const [form, setForm] = useState({ name: "", phone: "", address: "", payment: "COD" });
   const [errors, setErrors] = useState({});
   const [placing, setPlacing] = useState(false);
   const [order, setOrder] = useState(null);
   const [orderNote, setOrderNote] = useState("");
+  const [payOrder, setPayOrder] = useState(null); // order awaiting demo-gateway payment
+  const [paidInfo, setPaidInfo] = useState(null); // { paymentId, method }
+
+  // Prefill the name from the logged-in profile (phone is not stored there).
+  useEffect(() => {
+    if (user && user.name) {
+      setForm((f) => (f.name ? f : { ...f, name: user.name }));
+    }
+  }, [user]);
 
   const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
@@ -23,6 +35,15 @@ export default function CheckoutPage() {
     return Object.keys(errs).length === 0;
   };
 
+  const finishOrder = (placed, note, payment) => {
+    setOrder(placed);
+    setOrderNote(note);
+    setPaidInfo(payment || null);
+    setPayOrder(null);
+    clearCart();
+    window.scrollTo({ top: 0 });
+  };
+
   const submit = async (e) => {
     e.preventDefault();
     if (!validate() || cart.length === 0) return;
@@ -34,14 +55,17 @@ export default function CheckoutPage() {
         items: cart.map((i) => ({ id: i.id, size: i.size, qty: i.qty })),
       };
       const { order: placed, source } = await placeOrder(payload);
-      setOrder(placed);
-      setOrderNote(
-        source === "api"
-          ? "Your order was confirmed by the RX3 server."
-          : "The store server could not be reached, so this order was recorded on this device only."
-      );
-      clearCart();
-      window.scrollTo({ top: 0 });
+      if (source === "api" && (form.payment === "UPI" || form.payment === "CARD")) {
+        // Order is PENDING_PAYMENT on the server — open the demo gateway.
+        setPayOrder(placed);
+      } else {
+        finishOrder(
+          placed,
+          source === "api"
+            ? "Your order was confirmed by the RX3 server."
+            : "The store server could not be reached, so this order was recorded on this device only."
+        );
+      }
     } catch (err) {
       setErrors({ form: err.message || "Could not place the order. Please try again." });
     } finally {
@@ -65,12 +89,22 @@ export default function CheckoutPage() {
             </div>
             <div className="flex justify-between">
               <span className="text-neutral-500">Payment</span>
-              <span className="font-semibold">
-                {form.payment === "COD" ? "Cash on Delivery" : "UPI (pay on confirmation call)"}
+              <span className="font-semibold text-right max-w-[60%]">
+                {paidInfo
+                  ? `Paid via ${paidInfo.method} · ${paidInfo.paymentId}`
+                  : order.paymentStatus === "PAID"
+                    ? `Paid via ${form.payment}`
+                    : form.payment === "COD"
+                      ? "Cash on Delivery"
+                      : `Payment pending (${form.payment})`}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500">Amount payable</span>
+              <span className="text-neutral-500">Order status</span>
+              <span className="font-semibold">{order.status}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-neutral-500">Amount {paidInfo || order.paymentStatus === "PAID" ? "paid" : "payable"}</span>
               <span className="font-bold">{formatINR(order.total)}</span>
             </div>
             <div className="flex justify-between">
@@ -93,7 +127,7 @@ export default function CheckoutPage() {
     );
   }
 
-  if (cart.length === 0) {
+  if (cart.length === 0 && !payOrder) {
     return (
       <main className="max-w-2xl mx-auto px-4 py-20 text-center">
         <div className="text-5xl mb-3">🛍️</div>
@@ -139,10 +173,11 @@ export default function CheckoutPage() {
 
           <div>
             <p className="text-sm font-semibold mb-2">Payment method</p>
-            <div className="grid sm:grid-cols-2 gap-3">
+            <div className="grid sm:grid-cols-3 gap-3">
               {[
                 { value: "COD", title: "Cash on Delivery", sub: "Pay at your doorstep" },
-                { value: "UPI", title: "UPI", sub: "GPay / PhonePe / Paytm on confirmation call" },
+                { value: "UPI", title: "UPI", sub: "Pay now via the demo gateway" },
+                { value: "CARD", title: "Card", sub: "Credit / debit via demo gateway" },
               ].map((opt) => (
                 <button
                   type="button"
@@ -168,10 +203,14 @@ export default function CheckoutPage() {
             disabled={placing}
             className="w-full bg-ink text-white font-semibold py-3.5 rounded-full hover:bg-brand-700 transition disabled:opacity-60"
           >
-            {placing ? "Placing your order…" : `Place Order · ${formatINR(totals.total)}`}
+            {placing
+              ? "Placing your order…"
+              : form.payment === "COD"
+                ? `Place Order · ${formatINR(totals.total)}`
+                : `Place Order & Pay · ${formatINR(totals.total)}`}
           </button>
           <p className="text-xs text-neutral-400 text-center">
-            Demo checkout — no real payment is charged.
+            Demo checkout — payments run through a fake gateway, no real money is charged.
           </p>
         </form>
 
@@ -232,6 +271,25 @@ export default function CheckoutPage() {
           </button>
         </aside>
       </div>
+
+      {payOrder && (
+        <PaymentModal
+          order={payOrder}
+          method={payOrder.payment}
+          onSuccess={({ paymentId, order: updated }) =>
+            finishOrder(updated || payOrder, "Payment received — your order is confirmed by the RX3 server.", {
+              paymentId,
+              method: payOrder.payment,
+            })
+          }
+          onClose={() =>
+            finishOrder(
+              payOrder,
+              "Order placed, but payment is still pending — our team will call you to complete it."
+            )
+          }
+        />
+      )}
     </main>
   );
 }

@@ -7,7 +7,11 @@ import { Footer } from "./components/Sections.jsx";
 import { useStore } from "./context/StoreContext.jsx";
 import CheckoutPage from "./views/CheckoutPage.jsx";
 import HomePage from "./views/HomePage.jsx";
+import LoginPage from "./views/LoginPage.jsx";
+import MyOrdersPage from "./views/MyOrdersPage.jsx";
 import ShopPage from "./views/ShopPage.jsx";
+import SignupPage from "./views/SignupPage.jsx";
+import AdminPage from "./views/AdminPage.jsx";
 import WishlistPage from "./views/WishlistPage.jsx";
 
 export default function App() {
@@ -47,6 +51,10 @@ export default function App() {
             {view === "shop" && <ShopPage products={products} />}
             {view === "wishlist" && <WishlistPage />}
             {view === "checkout" && <CheckoutPage />}
+            {view === "login" && <LoginPage />}
+            {view === "signup" && <SignupPage />}
+            {view === "myorders" && <MyOrdersPage />}
+            {view === "admin" && <AdminPage />}
           </>
         )}
       </div>

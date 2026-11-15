@@ -242,7 +242,7 @@ export function Newsletter() {
 }
 
 export function Footer() {
-  const { goShop } = useStore();
+  const { goShop, setView } = useStore();
   return (
     <footer className="bg-ink text-neutral-300">
       <div className="max-w-7xl mx-auto px-4 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -286,6 +286,11 @@ export function Footer() {
             <li>Cash on Delivery & UPI accepted</li>
             <li>7-day easy size exchange</li>
             <li>Delivery in 2–5 working days</li>
+            <li>
+              <button className="hover:text-white" onClick={() => setView("admin")}>
+                Admin
+              </button>
+            </li>
           </ul>
         </div>
         <div>

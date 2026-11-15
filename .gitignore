@@ -2,6 +2,7 @@ node_modules/
 dist/
 __pycache__/
 *.pyc
+rx3-local.db
 .env
 .env.*
 .wrangler/

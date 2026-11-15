@@ -1,12 +1,21 @@
+import { useAuth } from "../context/AuthContext.jsx";
 import { useStore } from "../context/StoreContext.jsx";
 
 export default function Navbar() {
   const { view, setView, goShop, totals, wishlist, setCartOpen } = useStore();
+  const { user, logout } = useAuth();
 
   const linkCls = (active) =>
     `px-3 py-2 text-sm font-medium rounded-full transition ${
       active ? "bg-ink text-white" : "text-neutral-700 hover:bg-neutral-200"
     }`;
+
+  const handleLogout = async () => {
+    await logout();
+    setView("home");
+  };
+
+  const firstName = user?.name ? user.name.trim().split(/\s+/)[0] : "";
 
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-neutral-200">
@@ -40,6 +49,42 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {user ? (
+            <>
+              <span className="hidden lg:block text-sm font-medium text-neutral-700">
+                Hi, {firstName}
+              </span>
+              <button
+                onClick={() => setView("myorders")}
+                className={`hidden md:inline-flex px-3 py-2 text-sm font-medium rounded-full transition ${
+                  view === "myorders" ? "bg-ink text-white" : "text-neutral-700 hover:bg-neutral-200"
+                }`}
+              >
+                My Orders
+              </button>
+              <button
+                onClick={handleLogout}
+                className="hidden md:inline-flex px-3 py-2 text-sm font-medium rounded-full text-neutral-700 hover:bg-neutral-200 transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => setView("login")}
+                className="bg-ink text-white px-4 py-2 text-sm font-semibold rounded-full hover:bg-brand-700 transition"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => setView("signup")}
+                className="hidden md:inline-flex px-3 py-2 text-sm font-medium rounded-full text-neutral-700 hover:bg-neutral-200 transition"
+              >
+                Sign Up
+              </button>
+            </>
+          )}
           <button
             onClick={() => setView("wishlist")}
             className="relative w-10 h-10 grid place-items-center rounded-full hover:bg-neutral-100"
@@ -83,6 +128,25 @@ export default function Navbar() {
         <button className={linkCls(false)} onClick={() => goShop("New Born")}>
           New Born
         </button>
+        {user ? (
+          <>
+            <button className={linkCls(view === "myorders")} onClick={() => setView("myorders")}>
+              My Orders
+            </button>
+            <button className={linkCls(false)} onClick={handleLogout}>
+              Logout ({firstName})
+            </button>
+          </>
+        ) : (
+          <>
+            <button className={linkCls(view === "login")} onClick={() => setView("login")}>
+              Login
+            </button>
+            <button className={linkCls(view === "signup")} onClick={() => setView("signup")}>
+              Sign Up
+            </button>
+          </>
+        )}
       </nav>
     </header>
   );

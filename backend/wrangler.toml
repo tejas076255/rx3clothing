@@ -6,3 +6,10 @@ compatibility_flags = ["python_workers"]
 # Python Workers (beta): wrangler bundles worker.py + app.py + catalog.py.
 # Deploy with:  wrangler deploy
 # Local worker dev with:  wrangler dev
+
+# KV namespace for users / sessions / orders — production storage.
+# (The account reached the free-plan limit of 10 D1 databases, so no new D1
+# could be created; db.py retains a D1DB implementation for a switch back.)
+[[kv_namespaces]]
+binding = "KV"
+id = "ce628b5e145147fba41962569c12ecc0"
