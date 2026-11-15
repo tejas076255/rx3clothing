@@ -1,0 +1,8 @@
+name = "vastra-api"
+main = "worker.py"
+compatibility_date = "2025-09-15"
+compatibility_flags = ["python_workers"]
+
+# Python Workers (beta): wrangler bundles worker.py + app.py + catalog.py.
+# Deploy with:  wrangler deploy
+# Local worker dev with:  wrangler dev
