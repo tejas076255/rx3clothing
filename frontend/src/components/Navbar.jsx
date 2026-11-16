@@ -118,14 +118,6 @@ export default function Navbar() {
             </>
           )}
           <button
-            onClick={() => setMenuOpen((o) => !o)}
-            className="md:hidden w-10 h-10 grid place-items-center rounded-full hover:bg-neutral-100 text-2xl leading-none"
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? "✕" : "☰"}
-          </button>
-          <button
             onClick={() => setView("wishlist")}
             className="relative w-10 h-10 grid place-items-center rounded-full hover:bg-neutral-100"
             aria-label="Wishlist"
@@ -148,6 +140,14 @@ export default function Navbar() {
                 {totals.count}
               </span>
             )}
+          </button>
+          <button
+            onClick={() => setMenuOpen((o) => !o)}
+            className="md:hidden w-10 h-10 grid place-items-center rounded-full hover:bg-neutral-100 text-2xl leading-none"
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? "✕" : "☰"}
           </button>
         </div>
       </div>
