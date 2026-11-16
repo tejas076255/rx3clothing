@@ -105,7 +105,7 @@ export async function fetchProducts() {
 export async function signup(name, email, password) {
   const data = await apiCall("/api/auth/signup", {
     method: "POST",
-    body: { name, email, password },
+    body: { name, email, password: String(password).trim() },
     token: null,
   });
   setToken(data.token);
@@ -115,7 +115,7 @@ export async function signup(name, email, password) {
 export async function login(email, password) {
   const data = await apiCall("/api/auth/login", {
     method: "POST",
-    body: { email, password },
+    body: { email, password: String(password).trim() },
     token: null,
   });
   setToken(data.token);
@@ -198,7 +198,7 @@ export async function fakePay({ orderId, method, upiId, cardNumber }) {
 export async function adminLogin(email, password) {
   const data = await apiCall("/api/admin/login", {
     method: "POST",
-    body: { email, password },
+    body: { email, password: String(password).trim() },
     token: null,
   });
   setAdminToken(data.token);
