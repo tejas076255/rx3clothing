@@ -24,6 +24,12 @@ export default function Navbar() {
       active ? "bg-ink text-white" : "text-neutral-700 hover:bg-neutral-200"
     }`;
 
+  // Mobile vertical menu rows: full-width, stacked, easy to tap.
+  const mLinkCls = (active) =>
+    `w-full text-left px-4 py-2.5 text-sm font-medium rounded-xl transition ${
+      active ? "bg-ink text-white" : "text-neutral-700 hover:bg-neutral-200"
+    }`;
+
   const handleLogout = async () => {
     await logout();
     setView("home");
@@ -133,41 +139,41 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav className="md:hidden flex items-center gap-1 px-3 pb-2 overflow-x-auto no-scrollbar">
-        <button className={linkCls(view === "home")} onClick={() => setView("home")}>
+      <nav className="md:hidden flex flex-col gap-1 px-3 pb-3 pt-1">
+        <button className={mLinkCls(view === "home")} onClick={() => setView("home")}>
           Home
         </button>
-        <button className={linkCls(view === "shop")} onClick={() => goShop("All")}>
+        <button className={mLinkCls(view === "shop")} onClick={() => goShop("All")}>
           Shop All
         </button>
-        <button className={linkCls(false)} onClick={() => goShop("Men")}>
+        <button className={mLinkCls(false)} onClick={() => goShop("Men")}>
           Men
         </button>
-        <button className={linkCls(false)} onClick={() => goShop("Boys")}>
+        <button className={mLinkCls(false)} onClick={() => goShop("Boys")}>
           Boys
         </button>
-        <button className={linkCls(false)} onClick={() => goShop("New Born")}>
+        <button className={mLinkCls(false)} onClick={() => goShop("New Born")}>
           New Born
         </button>
         {user ? (
           <>
-            <button className={linkCls(view === "myorders")} onClick={() => setView("myorders")}>
+            <button className={mLinkCls(view === "myorders")} onClick={() => setView("myorders")}>
               My Orders
             </button>
-            <button className={linkCls(false)} onClick={handleLogout}>
+            <button className={mLinkCls(false)} onClick={handleLogout}>
               Logout ({firstName})
             </button>
           </>
         ) : isAdmin ? (
-          <button className={linkCls(view === "admin")} onClick={() => setView("admin")}>
+          <button className={mLinkCls(view === "admin")} onClick={() => setView("admin")}>
             Admin Dashboard
           </button>
         ) : (
           <>
-            <button className={linkCls(view === "login")} onClick={() => setView("login")}>
+            <button className={mLinkCls(view === "login")} onClick={() => setView("login")}>
               Login
             </button>
-            <button className={linkCls(view === "signup")} onClick={() => setView("signup")}>
+            <button className={mLinkCls(view === "signup")} onClick={() => setView("signup")}>
               Sign Up
             </button>
           </>
