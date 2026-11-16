@@ -39,11 +39,24 @@ export default function App() {
 
       <div className="flex-1">
         {loading ? (
-          <div className="max-w-7xl mx-auto px-4 py-24 text-center">
-            <div className="font-display text-3xl font-bold tracking-[0.2em] animate-pulse">
-              RX3
+          <div className="animate-pulse" aria-label="Loading RX3">
+            <div className="bg-neutral-200 h-64 sm:h-80" />
+            <div className="max-w-7xl mx-auto px-4 py-10">
+              <div className="h-7 w-56 bg-neutral-200 rounded-full" />
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 mt-6">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <div key={i} className="bg-white border border-neutral-200 rounded-2xl overflow-hidden">
+                    <div className="h-52 sm:h-64 lg:h-72 bg-neutral-200" />
+                    <div className="p-4 space-y-2">
+                      <div className="h-3 w-2/3 bg-neutral-200 rounded-full" />
+                      <div className="h-4 w-1/2 bg-neutral-200 rounded-full" />
+                      <div className="h-8 w-full bg-neutral-200 rounded-full" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-neutral-400 mt-8 text-sm text-center">Loading the new collection…</p>
             </div>
-            <p className="text-neutral-500 mt-2 text-sm">Loading the new collection…</p>
           </div>
         ) : (
           <>

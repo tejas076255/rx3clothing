@@ -28,9 +28,9 @@ export default function WishlistPage() {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-8">
-          {wishlist.map((p) => (
-            <ProductCard key={p.id} product={p} />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 mt-8">
+          {wishlist.map((p, i) => (
+            <ProductCard key={p.id} product={p} revealDelay={(i % 4) * 70} />
           ))}
         </div>
       )}

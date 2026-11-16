@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Reveal from "./Reveal.jsx";
 import { useStore } from "../context/StoreContext.jsx";
 
 export function Hero() {
@@ -8,6 +9,7 @@ export function Hero() {
       <img
         src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=1600&auto=format&fit=crop"
         alt="RX3 shirts on the rack — mens, boys and new born shirts"
+        fetchpriority="high"
         className="absolute inset-0 w-full h-full object-cover opacity-45"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
@@ -54,21 +56,21 @@ const TILES = [
     title: "Men",
     tagline: "Formal, casual, linen, denim & party shirts",
     image:
-      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?q=80&w=800&auto=format&fit=crop",
   },
   {
     category: "Boys",
     title: "Boys",
     tagline: "School, party & festive shirts for young gentlemen",
     image:
-      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1586537182864-75d5ea8a0e3d?q=80&w=800&auto=format&fit=crop",
   },
   {
     category: "New Born",
     title: "New Born",
     tagline: "Feather-soft cotton shirts & sets for delicate skin",
     image:
-      "https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1582212742235-a2500f31cb39?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
@@ -82,6 +84,7 @@ export function CategoryTiles() {
           <p className="text-neutral-500 mt-1">Mens Shirts · Boys Shirts · New Born Shirts.</p>
         </div>
       </div>
+      <Reveal>
       <div className="grid sm:grid-cols-3 gap-5">
         {TILES.map((t) => (
           <button
@@ -106,6 +109,7 @@ export function CategoryTiles() {
           </button>
         ))}
       </div>
+      </Reveal>
     </section>
   );
 }
@@ -114,6 +118,7 @@ export function OfferBanner() {
   const { goShop } = useStore();
   return (
     <section className="max-w-7xl mx-auto px-4 pb-14">
+      <Reveal>
       <div className="relative rounded-3xl overflow-hidden bg-ink text-white">
         <img
           src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1400&auto=format&fit=crop"
@@ -140,6 +145,7 @@ export function OfferBanner() {
           </button>
         </div>
       </div>
+      </Reveal>
     </section>
   );
 }
@@ -171,6 +177,7 @@ export function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 py-14">
         <h2 className="font-display text-3xl font-bold text-center">Loved Across India</h2>
         <p className="text-neutral-500 text-center mt-1">Real words from real wardrobes.</p>
+        <Reveal>
         <div className="grid md:grid-cols-3 gap-5 mt-8">
           {TESTIMONIALS.map((t) => (
             <figure key={t.name} className="bg-neutral-50 rounded-3xl p-6 border border-neutral-200">
@@ -186,6 +193,7 @@ export function Testimonials() {
             </figure>
           ))}
         </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -208,6 +216,7 @@ export function Newsletter() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-14">
+      <Reveal>
       <div className="bg-ink text-white rounded-3xl px-6 py-12 sm:px-12 text-center">
         <h2 className="font-display text-3xl font-bold">Get ₹200 off your first order</h2>
         <p className="text-neutral-300 mt-2 max-w-md mx-auto">
@@ -237,6 +246,7 @@ export function Newsletter() {
         )}
         {error && <p className="mt-3 text-neutral-200 font-medium text-sm">{error}</p>}
       </div>
+      </Reveal>
     </section>
   );
 }

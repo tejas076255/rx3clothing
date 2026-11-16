@@ -1,19 +1,26 @@
 import { discountPct, formatINR } from "../api.js";
 import { useStore } from "../context/StoreContext.jsx";
+import { useReveal } from "./Reveal.jsx";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, revealDelay = 0 }) {
   const { addToCart, toggleWishlist, isWishlisted, setQuickView } = useStore();
   const wished = isWishlisted(product.id);
   const off = discountPct(product);
+  const { ref, style } = useReveal(revealDelay);
 
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden border border-neutral-200 hover:shadow-xl hover:-translate-y-0.5 transition duration-300">
+    <div
+      ref={ref}
+      style={style}
+      className="reveal group bg-white rounded-2xl overflow-hidden border border-neutral-200 hover:shadow-xl hover:-translate-y-0.5 transition duration-300"
+    >
       <div className="relative cursor-pointer" onClick={() => setQuickView(product)}>
         <img
           src={product.image}
           alt={product.name}
           loading="lazy"
-          className="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition duration-500"
+          decoding="async"
+          className="w-full h-52 sm:h-64 lg:h-72 object-cover group-hover:scale-105 transition duration-500"
         />
         {off > 0 && (
           <span className="absolute top-3 left-3 bg-brand-600 text-white text-xs font-bold px-2 py-1 rounded-full">
