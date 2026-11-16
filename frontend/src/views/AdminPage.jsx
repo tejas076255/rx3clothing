@@ -32,9 +32,18 @@ export default function AdminPage() {
   const [loginBusy, setLoginBusy] = useState(false);
 
   const load = useCallback(async () => {
-    const [statsData, ordersData] = await Promise.all([adminStats(), adminOrders()]);
-    setStats(statsData);
-    setOrders(ordersData);
+    try {
+      const [statsData, ordersData] = await Promise.all([adminStats(), adminOrders()]);
+      setStats(statsData);
+      setOrders(ordersData);
+    } catch (err) {
+      // A just-created session can take a moment to become readable
+      // everywhere (KV propagation) — wait briefly and retry once.
+      await new Promise((r) => setTimeout(r, 1500));
+      const [statsData, ordersData] = await Promise.all([adminStats(), adminOrders()]);
+      setStats(statsData);
+      setOrders(ordersData);
+    }
   }, []);
 
   useEffect(() => {
@@ -141,9 +150,6 @@ export default function AdminPage() {
               {loginBusy ? "Signing in…" : "Sign In"}
             </button>
           </form>
-          <p className="text-xs text-neutral-400 text-center mt-4">
-            Local demo login: admin@rx3clothing.com / rx3admin
-          </p>
         </div>
       </main>
     );
