@@ -20,7 +20,7 @@ export default function Navbar() {
   }, [view]);
 
   const linkCls = (active) =>
-    `px-3 py-2 text-sm font-medium rounded-full transition ${
+    `px-3 py-2 text-sm font-medium rounded-full transition whitespace-nowrap shrink-0 ${
       active ? "bg-ink text-white" : "text-neutral-700 hover:bg-neutral-200"
     }`;
 
