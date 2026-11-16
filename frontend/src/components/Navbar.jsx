@@ -8,6 +8,11 @@ export default function Navbar() {
   const { user, logout } = useAuth();
 
   const [isAdmin, setIsAdmin] = useState(() => !!getAdminToken());
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navTo = (fn) => () => {
+    fn();
+    setMenuOpen(false);
+  };
   useEffect(() => {
     const sync = () => setIsAdmin(!!getAdminToken());
     sync();
@@ -113,6 +118,14 @@ export default function Navbar() {
             </>
           )}
           <button
+            onClick={() => setMenuOpen((o) => !o)}
+            className="md:hidden w-10 h-10 grid place-items-center rounded-full hover:bg-neutral-100 text-2xl leading-none"
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
+          <button
             onClick={() => setView("wishlist")}
             className="relative w-10 h-10 grid place-items-center rounded-full hover:bg-neutral-100"
             aria-label="Wishlist"
@@ -139,46 +152,48 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav className="md:hidden flex flex-col gap-1 px-3 pb-3 pt-1">
-        <button className={mLinkCls(view === "home")} onClick={() => setView("home")}>
+      {menuOpen && (
+      <nav className="md:hidden flex flex-col gap-1 px-3 pb-3 pt-1 animate-fade-up">
+        <button className={mLinkCls(view === "home")} onClick={navTo(() => setView("home"))}>
           Home
         </button>
-        <button className={mLinkCls(view === "shop")} onClick={() => goShop("All")}>
+        <button className={mLinkCls(view === "shop")} onClick={navTo(() => goShop("All"))}>
           Shop All
         </button>
-        <button className={mLinkCls(false)} onClick={() => goShop("Men")}>
+        <button className={mLinkCls(false)} onClick={navTo(() => goShop("Men"))}>
           Men
         </button>
-        <button className={mLinkCls(false)} onClick={() => goShop("Boys")}>
+        <button className={mLinkCls(false)} onClick={navTo(() => goShop("Boys"))}>
           Boys
         </button>
-        <button className={mLinkCls(false)} onClick={() => goShop("New Born")}>
+        <button className={mLinkCls(false)} onClick={navTo(() => goShop("New Born"))}>
           New Born
         </button>
         {user ? (
           <>
-            <button className={mLinkCls(view === "myorders")} onClick={() => setView("myorders")}>
+            <button className={mLinkCls(view === "myorders")} onClick={navTo(() => setView("myorders"))}>
               My Orders
             </button>
-            <button className={mLinkCls(false)} onClick={handleLogout}>
+            <button className={mLinkCls(false)} onClick={navTo(handleLogout)}>
               Logout ({firstName})
             </button>
           </>
         ) : isAdmin ? (
-          <button className={mLinkCls(view === "admin")} onClick={() => setView("admin")}>
+          <button className={mLinkCls(view === "admin")} onClick={navTo(() => setView("admin"))}>
             Admin Dashboard
           </button>
         ) : (
           <>
-            <button className={mLinkCls(view === "login")} onClick={() => setView("login")}>
+            <button className={mLinkCls(view === "login")} onClick={navTo(() => setView("login"))}>
               Login
             </button>
-            <button className={mLinkCls(view === "signup")} onClick={() => setView("signup")}>
+            <button className={mLinkCls(view === "signup")} onClick={navTo(() => setView("signup"))}>
               Sign Up
             </button>
           </>
         )}
       </nav>
+      )}
     </header>
   );
 }
