@@ -23,7 +23,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.6,
     "reviews": 2314,
     "description": "Our signature Oxford weave formal shirt with a structured collar and single-needle stitching. Wrinkle-resistant finish keeps it boardroom-sharp all day.",
-    "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?q=80&w=800&auto=format&fit=crop",
     "featured": true,
     "bestseller": true
   },
@@ -49,7 +49,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.3,
     "reviews": 1689,
     "description": "Yarn-dyed cotton checks with a button-down collar and curved hem. Pre-washed for zero shrinkage — weekends, sorted.",
-    "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1698857494817-d244cb4231a8?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": true
   },
@@ -75,7 +75,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.7,
     "reviews": 942,
     "description": "Airy European flax linen with a relaxed camp collar. The shirt Ahmedabad summers were made for — breathable, light and effortlessly sharp.",
-    "image": "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1740711152088-88a009e877bb?q=80&w=800&auto=format&fit=crop",
     "featured": true,
     "bestseller": false
   },
@@ -100,7 +100,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.4,
     "reviews": 1204,
     "description": "Fine Bengal stripes on breathable cotton twill, cut slim through the body with a cutaway collar that sits perfectly with or without a tie.",
-    "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1629871870289-21efd577d820?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": false
   },
@@ -125,7 +125,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.5,
     "reviews": 833,
     "description": "Mid-weight denim shirt with snap buttons and twin chest pockets. Fades beautifully with every wash and pairs with everything you own.",
-    "image": "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1791579521894-61c00d3b8bfe?q=80&w=800&auto=format&fit=crop",
     "featured": true,
     "bestseller": false
   },
@@ -151,7 +151,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.5,
     "reviews": 517,
     "description": "A rich satin-finish shirt with a subtle sheen made for sangeets, receptions and big nights out. Tailored fit, premium buttons, zero creasing.",
-    "image": "https://images.unsplash.com/photo-1507680434567-5739c80be1ac?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1627798390269-219397e8d143?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": false
   },
@@ -177,7 +177,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.2,
     "reviews": 689,
     "description": "Hard-wearing cotton twill with reinforced elbows and two flap pockets. Built for long days on site, styled for everywhere after.",
-    "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1779029061574-f2bb57af0747?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": false
   },
@@ -202,7 +202,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.6,
     "reviews": 764,
     "description": "A festive micro-print on soft cambric cotton — traditional motifs, modern slim cut. Made for poojas, family photos and wedding season.",
-    "image": "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1511039912745-8bfa0bc56aeb?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": true
   },
@@ -228,7 +228,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.5,
     "reviews": 932,
     "description": "A smart checked shirt with a button-down collar and easy-care finish. Birthday-party ready and tough enough for the playground after.",
-    "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1586537182864-75d5ea8a0e3d?q=80&w=800&auto=format&fit=crop",
     "featured": true,
     "bestseller": true
   },
@@ -254,7 +254,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.6,
     "reviews": 1541,
     "description": "Crisp poly-cotton school shirt that stays white wash after wash. Reinforced collar, smooth buttons and a comfortable regular fit for all-day classes.",
-    "image": "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1547082661-71362fc3969c?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": true
   },
@@ -278,7 +278,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.4,
     "reviews": 421,
     "description": "A mini version of our best-selling denim shirt — soft washed denim, snap buttons little fingers can manage, and double-stitched seams.",
-    "image": "https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1625248730675-ae830b3d955d?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": false
   },
@@ -304,7 +304,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.7,
     "reviews": 558,
     "description": "A kurta-style festive shirt with a mandarin collar and wooden buttons. Dressy enough for Diwali, comfy enough that he will not want to take it off.",
-    "image": "https://images.unsplash.com/photo-1476234251651-f353703a034d?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1774438026136-9736ec28922a?q=80&w=800&auto=format&fit=crop",
     "featured": true,
     "bestseller": false
   },
@@ -329,7 +329,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.3,
     "reviews": 296,
     "description": "Breezy striped cotton shirt with a chest pocket for treasures. Pre-washed so it comes out of the packet soft, not scratchy.",
-    "image": "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1627639679638-8485316a4b21?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": false
   },
@@ -354,7 +354,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.4,
     "reviews": 388,
     "description": "A crisp solid formal shirt for weddings, annual days and family functions. Pairs perfectly with trousers or a little Nehru jacket.",
-    "image": "https://images.unsplash.com/photo-1514090458221-65bb69cf63e9?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1727798450911-4f99a48cd03b?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": false
   },
@@ -378,7 +378,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.8,
     "reviews": 1204,
     "description": "Feather-soft combed cotton shirt with nickel-free snap buttons and flat seams that never rub delicate skin. Gentle from the very first wear.",
-    "image": "https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1582212742235-a2500f31cb39?q=80&w=800&auto=format&fit=crop",
     "featured": true,
     "bestseller": true
   },
@@ -401,7 +401,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.7,
     "reviews": 845,
     "description": "A two-piece set — printed cotton shirt with matching elastic-waist shorts. Skin-safe dyes, easy nappy-change access, endless photo cuteness.",
-    "image": "https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1777397660834-67c6d0eabe15?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": true
   },
@@ -424,7 +424,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.8,
     "reviews": 663,
     "description": "Traditional front-tie jhabla in double-layer muslin that gets softer with every wash. Breathable, airy and perfect for Indian summers.",
-    "image": "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1622290319146-7b63df48a635?q=80&w=800&auto=format&fit=crop",
     "featured": true,
     "bestseller": false
   },
@@ -447,7 +447,7 @@ export const FALLBACK_PRODUCTS = [
     "rating": 4.6,
     "reviews": 432,
     "description": "Baby's first festive outfit — a soft cotton shirt with delicate embroidery and matching bottoms. Made for naming ceremonies and first celebrations.",
-    "image": "https://images.unsplash.com/photo-1604467794349-0b74285de7e7?q=80&w=800&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1561987619-06c885c7bd45?q=80&w=800&auto=format&fit=crop",
     "featured": false,
     "bestseller": false
   }
