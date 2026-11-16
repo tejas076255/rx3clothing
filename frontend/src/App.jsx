@@ -84,7 +84,7 @@ export default function App() {
       <QuickViewModal />
 
       {toast && (
-        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] bg-ink text-white text-sm font-medium px-5 py-2.5 rounded-full shadow-xl animate-fade-up">
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] bg-ink text-white text-sm font-medium px-5 py-2.5 rounded-full shadow-xl animate-fade-up max-w-[92vw] text-center">
           ✓ {toast}
         </div>
       )}

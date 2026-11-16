@@ -26,16 +26,16 @@ export function Hero() {
           and festive shirts for men, sharp little shirts for boys, and feather-soft shirts for
           new borns. Honest prices from ₹299, delivered across India.
         </p>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
           <button
             onClick={() => goShop("All")}
-            className="bg-white hover:bg-neutral-200 text-ink font-semibold px-8 py-3.5 rounded-full transition shadow-lg"
+            className="w-full sm:w-auto bg-white hover:bg-neutral-200 text-ink font-semibold px-8 py-3.5 rounded-full transition shadow-lg"
           >
             Shop All Shirts
           </button>
           <button
             onClick={() => goShop("Men")}
-            className="bg-white/10 hover:bg-white/20 backdrop-blur border border-white/40 text-white font-semibold px-8 py-3.5 rounded-full transition"
+            className="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur border border-white/40 text-white font-semibold px-8 py-3.5 rounded-full transition"
           >
             Explore Men’s Shirts
           </button>
@@ -90,7 +90,7 @@ export function CategoryTiles() {
           <button
             key={t.category}
             onClick={() => goShop(t.category)}
-            className="relative h-64 rounded-3xl overflow-hidden group text-left"
+            className="relative h-52 sm:h-64 rounded-3xl overflow-hidden group text-left"
           >
             <img
               src={t.image}

@@ -12,9 +12,9 @@ export default function ProductCard({ product, revealDelay = 0 }) {
     <div
       ref={ref}
       style={style}
-      className="reveal group bg-white rounded-2xl overflow-hidden border border-neutral-200 hover:shadow-xl hover:-translate-y-0.5 transition duration-300"
+      className="reveal group bg-white rounded-2xl overflow-hidden border border-neutral-200 hover:shadow-xl hover:-translate-y-0.5 transition duration-300 flex flex-col h-full"
     >
-      <div className="relative cursor-pointer" onClick={() => setQuickView(product)}>
+      <div className="relative cursor-pointer shrink-0" onClick={() => setQuickView(product)}>
         <img
           src={product.image}
           alt={product.name}
@@ -46,8 +46,8 @@ export default function ProductCard({ product, revealDelay = 0 }) {
         </button>
       </div>
 
-      <div className="p-4">
-        <div className="flex items-center justify-between text-xs text-neutral-500">
+      <div className="p-3.5 sm:p-4 flex flex-col flex-1">
+        <div className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between text-xs text-neutral-500">
           <span className="uppercase tracking-wide">
             {product.category} · {product.type}
           </span>
@@ -57,7 +57,7 @@ export default function ProductCard({ product, revealDelay = 0 }) {
           </span>
         </div>
         <h3
-          className="mt-1.5 font-semibold text-ink leading-snug cursor-pointer hover:text-brand-700"
+          className="mt-1.5 font-semibold text-ink leading-snug cursor-pointer hover:text-brand-700 line-clamp-2 min-h-[2.75rem]"
           onClick={() => setQuickView(product)}
         >
           {product.name}
@@ -68,16 +68,16 @@ export default function ProductCard({ product, revealDelay = 0 }) {
             <span className="text-sm text-neutral-400 line-through">{formatINR(product.mrp)}</span>
           )}
         </div>
-        <div className="mt-3 flex gap-2">
+        <div className="mt-auto pt-3 flex flex-col min-[480px]:flex-row gap-2">
           <button
             onClick={() => setQuickView(product)}
-            className="flex-1 border border-ink text-ink text-sm font-semibold py-2 rounded-full hover:bg-neutral-100 transition"
+            className="flex-1 border border-ink text-ink text-sm font-semibold py-2.5 sm:py-2 rounded-full hover:bg-neutral-100 transition"
           >
             Quick View
           </button>
           <button
             onClick={() => addToCart(product)}
-            className="flex-1 bg-ink text-white text-sm font-semibold py-2 rounded-full hover:bg-brand-700 transition"
+            className="flex-1 bg-ink text-white text-sm font-semibold py-2.5 sm:py-2 rounded-full hover:bg-brand-700 transition"
           >
             Add to Cart
           </button>
