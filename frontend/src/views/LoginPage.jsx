@@ -73,6 +73,12 @@ export default function LoginPage() {
             Create an account
           </button>
         </p>
+        <p className="text-sm text-neutral-500 text-center mt-2">
+          Store owner?{" "}
+          <button onClick={() => setView("admin")} className="font-semibold text-ink underline underline-offset-4">
+            Open the admin dashboard
+          </button>
+        </p>
       </div>
     </main>
   );
