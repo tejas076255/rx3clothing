@@ -1,9 +1,23 @@
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useStore } from "../context/StoreContext.jsx";
+import { getAdminToken } from "../api.js";
 
 export default function Navbar() {
   const { view, setView, goShop, totals, wishlist, setCartOpen } = useStore();
   const { user, logout } = useAuth();
+
+  const [isAdmin, setIsAdmin] = useState(() => !!getAdminToken());
+  useEffect(() => {
+    const sync = () => setIsAdmin(!!getAdminToken());
+    sync();
+    window.addEventListener("rx3-admin-auth", sync);
+    window.addEventListener("storage", sync);
+    return () => {
+      window.removeEventListener("rx3-admin-auth", sync);
+      window.removeEventListener("storage", sync);
+    };
+  }, [view]);
 
   const linkCls = (active) =>
     `px-3 py-2 text-sm font-medium rounded-full transition ${
@@ -69,6 +83,13 @@ export default function Navbar() {
                 Logout
               </button>
             </>
+          ) : isAdmin ? (
+            <button
+              onClick={() => setView("admin")}
+              className="bg-ink text-white px-4 py-2 text-sm font-semibold rounded-full hover:bg-brand-700 transition"
+            >
+              Admin Dashboard
+            </button>
           ) : (
             <>
               <button
@@ -137,6 +158,10 @@ export default function Navbar() {
               Logout ({firstName})
             </button>
           </>
+        ) : isAdmin ? (
+          <button className={linkCls(view === "admin")} onClick={() => setView("admin")}>
+            Admin Dashboard
+          </button>
         ) : (
           <>
             <button className={linkCls(view === "login")} onClick={() => setView("login")}>

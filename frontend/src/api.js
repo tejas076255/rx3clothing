@@ -41,6 +41,12 @@ export function setAdminToken(token) {
   } catch {
     /* storage unavailable */
   }
+  // Let the navbar (and anything else) react to admin sign-in / sign-out.
+  try {
+    window.dispatchEvent(new Event("rx3-admin-auth"));
+  } catch {
+    /* non-browser environment */
+  }
 }
 
 // ---------------------------------------------------------------------------
